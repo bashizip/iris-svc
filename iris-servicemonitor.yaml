@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: iris-svc
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: iris-svc
+  namespaceSelector:
+    matchNames: ["ml"]
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
